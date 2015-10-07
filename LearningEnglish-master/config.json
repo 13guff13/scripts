@@ -52,7 +52,7 @@
     */
     ,"empty_answer_is_error": "no"
     /*
-        Шаблон url по которому можно просмотреть/найте перевод слова в интернете
+        Шаблон url по которому можно просмотреть/найте перевод слова в интернетеpp
     */
     ,"internet_dictionary_url": {
         "EN_RU": "http://slovari.yandex.ru/{word}/en-ru/#lingvo/",

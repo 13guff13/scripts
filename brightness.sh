@@ -5,14 +5,25 @@ if [ "$#" = "0" ]; then
     level= cat /sys/class/backlight/intel_backlight/brightness
     echo -n $level
 else
-    level= cat /sys/class/backlight/intel_backlight/brightness | bc
-    #echo $level
-    #echo $1
-        
-    goalsLevel=$(($1 + $level))
-    echo $jopa
-    #goalsLevel= $level + $1
-    echo $goalsLevel >> /sys/class/backlight/intel_backlight/brightness
+    currentLevel=`cat /sys/class/backlight/intel_backlight/brightness`
+    echo $currentLevel
+    increment=$1
+    echo $increment
+    goalsLevel=$((currentLevel + increment))
+    echo $goalsLevel
+    max=7812
+    min=0
+    echo $max
+    echo $min
+    if [ "$goalsLevel" -gt "$max" ]; then
+        echo $max > /sys/class/backlight/intel_backlight/brightness
+    else
+        if [ "$goalsLevel" -lt "$min" ]; then
+            echo $min > /sys/class/backlight/intel_backlight/brightness
+        else
+            echo $goalsLevel > /sys/class/backlight/intel_backlight/brightness
+        fi
+    fi
 fi
-measurement
-ankel
+#measurement
+#ankel
